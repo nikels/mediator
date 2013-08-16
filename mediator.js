@@ -7,6 +7,7 @@ define(function () {
 
   var channels = {};
   var sRegex = /\s/g;
+  var sep = ',';
 
   /**
   * @constructor
@@ -18,7 +19,7 @@ define(function () {
 
       var args = [].slice.call(arguments)
         , message = args.shift()
-        , messages = message.split(',')
+        , messages = message.split(sep)
         , subscribers
         , subscriber
         , j
@@ -47,8 +48,8 @@ define(function () {
         , subscribers;
 
       // recursion
-      if (message.indexOf(',') > -1) {
-        messages = message.split(',');
+      if (message.indexOf(sep) > -1) {
+        messages = message.split(sep);
         for (i = 0, len = messages.length; i < len; i++) {
           this.subscribe(messages[i].replace(sRegex, ''), method);
         }
